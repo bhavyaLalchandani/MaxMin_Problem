@@ -1,36 +1,32 @@
-public class Main<T extends Comparable<T>> {
-    private T a, b, c;
+import java.util.Arrays;
 
-    public Main(T a, T b, T c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+public class Main<T extends Comparable<T>> {
+    private T[] elements;
+
+    @SafeVarargs
+    public Main(T... elements) {
+        this.elements = elements;
     }
 
     public T findMax() {
-        return findMax(a, b, c);
+        return findMax(elements);
     }
 
-    public static <T extends Comparable<T>> T findMax(T a, T b, T c) {
-        T max = a; // Assume a is the largest
-        if (b.compareTo(max) > 0) {
-            max = b;
-        }
-        if (c.compareTo(max) > 0) {
-            max = c;
-        }
-        return max;
+    @SafeVarargs
+    public static <T extends Comparable<T>> T findMax(T... elements) {
+        return Arrays.stream(elements).max(Comparable::compareTo).orElse(null);
     }
 
     public static void main(String[] args) {
-        Main<Integer> intMax = new Main<>(9, 3, 1);
+        Main<Integer> intMax = new Main<>(9, 3, 1, 15, 7);
         System.out.println("Max Integer: " + intMax.findMax());
 
-        Main<Float> floatMax = new Main<>(2.2f, 9.5f, 1.3f);
+        Main<Float> floatMax = new Main<>(2.2f, 9.5f, 1.3f, 12.6f, 7.4f);
         System.out.println("Max Float: " + floatMax.findMax());
 
-        Main<String> stringMax = new Main<>("Apple", "Peach", "Banana");
+        Main<String> stringMax = new Main<>("Apple", "Peach", "Banana", "Mango");
         System.out.println("Max String: " + stringMax.findMax());
     }
 }
+
 
