@@ -13,5 +13,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Max Integer (1st): " + findMax(9, 3, 1));
         System.out.println("Max Float (2nd): " + findMax(2.2f, 9.5f, 1.3f));
+        System.out.println("Max String (3rd): " + findMax("Apple", "Peach", "Banana"));
     }
 }
